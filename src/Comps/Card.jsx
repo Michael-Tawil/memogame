@@ -1,16 +1,16 @@
 import '../assets/Card.css'
-import logo from '../../public/vite.svg'
+
 
 function Card(props){
-    const {} = props
+    const {cardimg,cardtext} = props
     return(
         <div className="cmdiv">
             <img
                 className="simg"
-                src = {logo} 
-                alt= ""
+                src = {cardimg}
+                alt= "Photo Not Available"
             />
-            <p>Text bois</p>
+            <p>{cardtext}</p>
         </div>
     )
 }
