@@ -1,5 +1,3 @@
-import '../assets/Card.css'
-
 
 function Card(props){
     const {cardimg,cardtext} = props

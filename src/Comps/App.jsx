@@ -1,9 +1,10 @@
-import Header from "./Header";
+import Body from './body'
+import '../assets/index.css'
 
 function App(){
   return(
     <>
-      <Header/>
+      <Body />
     </>
   )
 }

@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import '../assets/Header.css'
 
 function Header(props) {
   const {highscore} = props
