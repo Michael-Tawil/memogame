@@ -1,12 +1,12 @@
 
 function Header(props) {
-  const {highscore} = props
+  const {score} = props
 
   return (
     <>
       <div className='mdiv'>
         <h1>MEMO Game</h1>
-        <h2>High Score: {highscore}</h2>
+        <h2>Score: {score}</h2>
         
       </div>
     </>
