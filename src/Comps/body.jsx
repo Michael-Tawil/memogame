@@ -5,9 +5,11 @@ import Header from "./Header";
 function Body(props){
 
     const [score,Setscore] = useState(0);
+    const [highscore,Sethighscore] = useState(0);
     const [cardimg,Setcardimg] = useState("");
     const [cardtext,Setcardtext] = useState("");
     const [spoki,Setspoki] = useState([]);
+    const [preselc,Setpreselc] = useState("");
 
     useEffect(()=> {
         async function GetPoki() {
@@ -26,17 +28,27 @@ function Body(props){
             
         }
         GetPoki();
-    },[])
+    },[score])
 
 
-    console.log(spoki);
-    function CalcScore(){
+    /* function CalcScore(e){
+        let currselc = e.target.id
+        console.log(currselc)
+        if (preselc == currselc) {
+            Calchighscore();
+        }else{
+            preselc = currselc;
+            Setscore(score + 1);
+        }
+    } */
 
-    }
-
-    function Calchighscore(){
-
-    }
+    /* function Calchighscore(){
+        if(score > highscore){
+            highscore = score
+        }else{
+            Setscore(0);
+        }
+    } */
 
     return(
     <>
@@ -49,8 +61,10 @@ function Body(props){
                 return(
                 <Card
                     key = {index}
+                    id = {index}
                     cardtext = {item[0]}
-                    cardimg = {item[1]}/>
+                    cardimg = {item[1]}
+                    CalcScore={CalcScore}/>
                 )   
             })}
         </div>
