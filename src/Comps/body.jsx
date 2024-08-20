@@ -6,21 +6,22 @@ function Body(props){
 
     const [score,Setscore] = useState(0);
     const [highscore,Sethighscore] = useState(0);
-    const [cardimg,Setcardimg] = useState("");
-    const [cardtext,Setcardtext] = useState("");
     const [spoki,Setspoki] = useState([]);
-    const [preselc,Setpreselc] = useState("");
+    const [preselc,Setpreselc] = useState([])
+
 
     useEffect(()=> {
         async function GetPoki() {
             let pokiarray =[]
-
-            for (let i = 1; i <= 10; i++){
-            let fetchpoki = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
+            
+            for (let i = 1; i <= 15; i++){
+            let rannum = Math.floor(Math.random() * 150) + 1
+            let fetchpoki = await fetch(`https://pokeapi.co/api/v2/pokemon/${rannum}/`);
             let pokedata = await fetchpoki.json();
             let pname = pokedata.name
             let pimg = pokedata.sprites.front_default
-            pokiarray.push([pname,pimg])
+            let pnum = pokedata.id
+            pokiarray.push([pname,pimg,pnum])
         
             }
 
@@ -31,24 +32,27 @@ function Body(props){
     },[score])
 
 
-    /* function CalcScore(e){
-        let currselc = e.target.id
-        console.log(currselc)
-        if (preselc == currselc) {
+    function CalcScore(e){
+        let currselc = e.target.dataset.id
+        let prevarray = []
+
+        if (preselc.includes(currselc)) {
             Calchighscore();
         }else{
-            preselc = currselc;
+            prevarray.push([currselc])
+            Setpreselc(preselc +prevarray+",");
             Setscore(score + 1);
         }
-    } */
+        console.log("this is the prev selc" + preselc + "this is the pokemons current id" + currselc)
+    }
 
-    /* function Calchighscore(){
+    function Calchighscore(){
         if(score > highscore){
-            highscore = score
-        }else{
-            Setscore(0);
+            Sethighscore(score)
         }
-    } */
+        Setscore(0)
+        Setpreselc([])
+    }
 
     return(
     <>
@@ -61,13 +65,14 @@ function Body(props){
                 return(
                 <Card
                     key = {index}
-                    id = {index}
+                    cardkey = {item[2]}
                     cardtext = {item[0]}
                     cardimg = {item[1]}
                     CalcScore={CalcScore}/>
                 )   
             })}
         </div>
+        <p>{highscore}</p>
     </>
     )
 }
