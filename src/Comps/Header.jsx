@@ -5,8 +5,8 @@ function Header(props) {
   return (
     <>
       <div className='mdiv'>
-        <h1>A Pokemon Game</h1>
-        <h2>Score: {score}</h2>
+        <h1 className="text-xl">A Pokemon Game</h1>
+        <h2 className="text-xl">Score: {score}</h2>
       </div>
     </>
   )
