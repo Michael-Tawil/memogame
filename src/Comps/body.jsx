@@ -57,7 +57,8 @@ function Body(props){
     return(
     <>
         <Header 
-                score = {score}/>
+                score = {score}
+                highscore = {highscore}/>
                 
         <div className="Maindiv">
 
@@ -72,7 +73,7 @@ function Body(props){
                 )   
             })}
         </div>
-        <p>{highscore}</p>
+        <h2>{highscore}</h2>
     </>
     )
 }
