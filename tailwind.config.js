@@ -7,7 +7,11 @@ export default {
 
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        mintcream: "#F4FFFD"
+      }
+    },
   },
   plugins: [],
 }

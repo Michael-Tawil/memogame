@@ -73,7 +73,7 @@ function Body(props){
                 )   
             })}
         </div>
-        <h2>{highscore}</h2>
+        <h2 className="border-t-2 border-white h2score">High Score: {highscore}</h2>
     </>
     )
 }
