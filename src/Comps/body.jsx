@@ -8,10 +8,12 @@ function Body(props){
     const [highscore,Sethighscore] = useState(0);
     const [spoki,Setspoki] = useState([]);
     const [preselc,Setpreselc] = useState([])
+    const [loading,Setloading] = useState(true);
 
 
     useEffect(()=> {
         async function GetPoki() {
+            Setloading(true)
             let pokiarray =[]
             
             for (let i = 1; i <= 15; i++){
@@ -26,6 +28,7 @@ function Body(props){
             }
 
             Setspoki(pokiarray)
+            Setloading(false)
             
         }
         GetPoki();
@@ -62,16 +65,17 @@ function Body(props){
                 
         <div className="Maindiv">
 
-            {spoki.map((item,index) => {
-                return(
-                <Card
-                    key = {index}
-                    cardkey = {item[2]}
-                    cardtext = {item[0]}
-                    cardimg = {item[1]}
-                    CalcScore={CalcScore}/>
-                )   
-            })}
+            { loading ? <h1>Loading...</h1> :
+                spoki.map((item,index) => {
+                    return(
+                    <Card
+                        key = {index}
+                        cardkey = {item[2]}
+                        cardtext = {item[0]}
+                        cardimg = {item[1]}
+                        CalcScore={CalcScore}/>
+                    )   
+                })}
         </div>
         <h2 className="border-t-2 border-white h2score">High Score: {highscore}</h2>
     </>
